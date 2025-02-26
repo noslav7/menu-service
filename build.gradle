@@ -36,6 +36,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
 	implementation "io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceVersion}"
+	implementation 'com.vladmihalcea:hibernate-types-60:2.21.1'
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 	compileOnly 'org.projectlombok:lombok'
