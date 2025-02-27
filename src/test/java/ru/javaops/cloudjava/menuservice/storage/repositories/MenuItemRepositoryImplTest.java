@@ -146,6 +146,20 @@ class MenuItemRepositoryImplTest {
         assertElementsInOrder(drinks, MenuItem::getName, List.of("Tea", "Wine", "Cappuccino"));
     }
 
+    @Test
+    void ingredientCollection_isStoredAndRetrievedCorrectly() {
+        var id = getIdByName("Cappuccino");
+        MenuItem item = menuItemRepository.findById(id).orElseThrow();
+
+        assertThat(item.getIngredientCollection()).isNotNull();
+        assertThat(item.getIngredientCollection().getIngredients()).hasSize(3);
+
+        var firstIngredient = item.getIngredientCollection().getIngredients().get(0);
+        assertThat(firstIngredient.getName()).isEqualTo("milk");
+        assertThat(firstIngredient.getCalories()).isEqualTo(10);
+    }
+
+
     private Long getIdByName(String name) {
         return em.createQuery("select m.id from MenuItem m where m.name= ?1", Long.class)
                 .setParameter(1, name)
