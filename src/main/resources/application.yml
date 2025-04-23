@@ -28,7 +28,7 @@ spring:
   datasource:
     username: user
     password: password
-    url: jdbc:postgresql://localhost:15432/menu_service_db
+    url: jdbc:postgresql://localhost:5431/menu_service_db
     hikari:
       # таймаут на получение соединения из пула соединений
       connection-timeout: 2000 # в миллисекундах
@@ -69,9 +69,23 @@ spring:
         initial-interval: 1000
         max-interval: 2000
         multiplier: 1.1
+      label: discovery_service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${external.discovery-service-url}
+    initial-instance-info-replication-interval-seconds: 5
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+    prefer-ip-address: true
 
 configserver:
   import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:9095}
+
+external:
+  discovery-service-url: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka/}
 
 springdoc:
   api-docs:

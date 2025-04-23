@@ -27,7 +27,7 @@ services:
       - "9091:9091"
     environment:
       - CONFIGSERVER_IMPORT=configserver:${CONFIG_SERVER_URL}
-      - SPRING_CLOUD_CONFIG_FAIL_FAST=true
+      - SPRING_CLOUD_CONFIG_FAIL_FAST=false
       - SPRING_PROFILES_ACTIVE=prod
       - DB_URL=${MENU_DB_URL}
       - DB_USER=${MENU_DB_USER}
