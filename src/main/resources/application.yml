@@ -69,7 +69,13 @@ spring:
         initial-interval: 1000
         max-interval: 2000
         multiplier: 1.1
-      label: gateway_service
+      label: security_client
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${external.keycloak-url}
+          jwk-set-uri: ${external.jwk-set-url}
 
 eureka:
   client:
@@ -87,6 +93,8 @@ configserver:
 external:
   discovery-service-url: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka/}
   zipkin-endpoint: http://localhost:9411/api/v2/spans
+  keycloak-url: ${KEYCLOAK_URL:http://keycloak:8080/realms/cloud-java}
+  jwk-set-url: ${JWK_SET_URL:http://keycloak:8080/realms/cloud-java/protocol/openid-connect/certs}
 
 management:
   endpoints:
